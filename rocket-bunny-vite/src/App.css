@@ -1,0 +1,449 @@
+/* ===== App Layout ===== */
+.app-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ===== Scene Container ===== */
+.scene-container {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 60px rgba(100, 100, 255, 0.3);
+}
+
+/* ===== Sky Background ===== */
+.sky-bg {
+  position: absolute;
+  inset: 0;
+  transition: background 2s ease;
+}
+
+.sky-bg.phase-0,
+.sky-bg.phase-1 {
+  background: linear-gradient(180deg, #1a1a4e 0%, #2d1b69 30%, #4a2c8a 60%, #e8845c 85%, #f4a460 100%);
+}
+
+.sky-bg.phase-2 {
+  background: linear-gradient(180deg, #0a0a2e 0%, #1a1a4e 40%, #2d1b69 70%, #3a2070 100%);
+}
+
+.sky-bg.phase-3,
+.sky-bg.phase-4 {
+  background: linear-gradient(180deg, #050520 0%, #0a0a2e 50%, #12123a 100%);
+}
+
+/* ===== Ground ===== */
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(180deg, #2d8c3e 0%, #1a6b2a 40%, #0f4a1c 100%);
+  border-top: 3px solid #3aaf50;
+  transition: transform 1.5s ease-in, opacity 1.5s ease;
+}
+
+.ground.hidden {
+  transform: translateY(140px);
+  opacity: 0;
+}
+
+.ground-detail {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.grass-tuft {
+  width: 20px;
+  height: 30px;
+  background: radial-gradient(ellipse at bottom, #3aaf50 60%, transparent 60%);
+}
+
+/* ===== Launch Pad ===== */
+.launch-pad {
+  position: absolute;
+  bottom: 115px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 12px;
+  background: linear-gradient(180deg, #888 0%, #555 100%);
+  border-radius: 4px;
+  transition: transform 1.5s ease-in, opacity 1.5s ease;
+}
+
+.launch-pad.hidden {
+  transform: translateX(-50%) translateY(140px);
+  opacity: 0;
+}
+
+/* ===== StarField ===== */
+.starfield {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.star.visible {
+  opacity: 1;
+  animation: twinkle var(--twinkle-duration, 2s) ease-in-out var(--twinkle-delay, 0s) infinite alternate;
+}
+
+.star.bright {
+  box-shadow: 0 0 4px 1px rgba(255, 255, 200, 0.6);
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+  100% { opacity: 0.5; transform: scale(0.9); }
+}
+
+/* ===== Moon ===== */
+.moon-wrapper {
+  position: absolute;
+  top: 40px;
+  right: 80px;
+  transition: transform 3s ease, opacity 1s ease;
+  opacity: 0;
+  transform: scale(0.3);
+}
+
+.moon-wrapper.phase-0,
+.moon-wrapper.phase-1 {
+  opacity: 0.4;
+  transform: scale(0.3);
+}
+
+.moon-wrapper.phase-2 {
+  opacity: 0.7;
+  transform: scale(0.6) translate(-20px, 30px);
+}
+
+.moon-wrapper.phase-3,
+.moon-wrapper.phase-4 {
+  opacity: 1;
+  transform: scale(1.2) translate(-80px, 80px);
+}
+
+/* ===== Rocket ===== */
+.rocket-container {
+  position: absolute;
+  bottom: 127px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: none;
+  z-index: 10;
+}
+
+.rocket-container.phase-0,
+.rocket-container.phase-1 {
+  animation: rocketIdle 1.5s ease-in-out infinite;
+}
+
+.rocket-container.phase-2 {
+  animation: rocketLaunch 3s ease-in forwards;
+}
+
+.rocket-container.phase-3 {
+  animation: rocketToMoon 3s ease-in-out forwards;
+}
+
+.rocket-container.phase-4 {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-300px) scale(0.2);
+}
+
+@keyframes rocketIdle {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+@keyframes rocketLaunch {
+  0% {
+    transform: translateX(-50%) translateY(0) scale(1);
+    bottom: 127px;
+  }
+  30% {
+    transform: translateX(-50%) translateY(-80px) scale(0.95);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-650px) scale(0.5);
+  }
+}
+
+@keyframes rocketToMoon {
+  0% {
+    transform: translateX(-50%) translateY(-650px) scale(0.5);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(100px, -400px) scale(0.4) rotate(25deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(160px, -350px) scale(0.3) rotate(30deg);
+    opacity: 0.8;
+  }
+}
+
+/* ===== Flame ===== */
+.flame-group {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.flame-group.active {
+  opacity: 1;
+}
+
+.flame-inner {
+  animation: flameFlicker 0.15s ease-in-out infinite alternate;
+  transform-origin: center top;
+}
+
+.flame-outer {
+  animation: flameFlicker 0.2s ease-in-out 0.05s infinite alternate;
+  transform-origin: center top;
+}
+
+@keyframes flameFlicker {
+  0% { transform: scaleY(1) scaleX(1); }
+  50% { transform: scaleY(1.15) scaleX(0.9); }
+  100% { transform: scaleY(0.85) scaleX(1.1); }
+}
+
+/* ===== Smoke ===== */
+.smoke-puff {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(200, 200, 200, 0.6);
+  animation: smokeRise 1.5s ease-out forwards;
+}
+
+@keyframes smokeRise {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.5) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3) translateY(40px);
+  }
+}
+
+/* ===== Clouds ===== */
+.clouds-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cloud {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.cloud.visible {
+  opacity: 0.9;
+  animation: cloudDrift var(--cloud-duration, 3s) linear forwards;
+}
+
+@keyframes cloudDrift {
+  0% {
+    transform: translateY(var(--cloud-start, -100px));
+  }
+  100% {
+    transform: translateY(700px);
+  }
+}
+
+/* ===== Bunny Waving ===== */
+.bunny-wave {
+  animation: bunnyWave 0.6s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+@keyframes bunnyWave {
+  0% { transform: rotate(-15deg); }
+  100% { transform: rotate(15deg); }
+}
+
+/* ===== Bunny on Moon ===== */
+.bunny-on-moon {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.bunny-on-moon.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bunny-jump {
+  animation: bunnyJump 0.6s ease-out forwards;
+}
+
+@keyframes bunnyJump {
+  0% { transform: translate(0, -30px) scale(0.3); opacity: 0; }
+  50% { transform: translate(10px, -50px) scale(0.8); opacity: 1; }
+  100% { transform: translate(15px, 0) scale(1); opacity: 1; }
+}
+
+/* ===== Chang'e Bunny ===== */
+.change-bunny {
+  opacity: 0;
+  transition: opacity 1s ease 0.5s;
+}
+
+.change-bunny.visible {
+  opacity: 1;
+  animation: changeBounce 1s ease-in-out 0.8s infinite alternate;
+}
+
+@keyframes changeBounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+/* ===== Credits ===== */
+.credits-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 5, 20, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s ease, background 1.5s ease;
+  z-index: 20;
+}
+
+.credits-overlay.visible {
+  opacity: 1;
+  background: rgba(5, 5, 20, 0.75);
+  pointer-events: auto;
+}
+
+.credits-title {
+  font-size: 48px;
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.2);
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 1s ease 0.5s, opacity 1s ease 0.5s;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.credits-overlay.visible .credits-title {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.credits-subtitle {
+  font-size: 22px;
+  color: #e0d0ff;
+  margin-top: 16px;
+  opacity: 0;
+  transition: opacity 1s ease 1.2s;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.credits-overlay.visible .credits-subtitle {
+  opacity: 1;
+}
+
+.credits-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.credit-sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ffd700;
+  border-radius: 50%;
+  animation: sparkle 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.5); }
+  100% { opacity: 0.3; transform: scale(0.8); }
+}
+
+/* ===== Replay Button ===== */
+.replay-btn {
+  margin-top: 30px;
+  padding: 12px 32px;
+  font-size: 18px;
+  background: linear-gradient(135deg, #ff6b6b, #ffa500);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease 2s, transform 1s ease 2s, box-shadow 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.credits-overlay.visible .replay-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.replay-btn:hover {
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.replay-btn:active {
+  transform: translateY(1px);
+}
+
+/* ===== Exhaust Particles ===== */
+.exhaust-particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: exhaustFade 0.8s ease-out forwards;
+}
+
+@keyframes exhaustFade {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.2) translateY(60px);
+  }
+}
