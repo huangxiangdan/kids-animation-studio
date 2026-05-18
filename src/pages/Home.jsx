@@ -10,6 +10,14 @@ const ANIMATIONS = [
     bg: 'linear-gradient(135deg, #0a0030 0%, #1a0050 50%, #3a1080 100%)',
     accent: '#a78bfa',
   },
+  {
+    id: 'white-bone-demon',
+    title: '三打白骨精',
+    desc: '悟空火眼金睛识破妖怪三次变化，保护师父！',
+    emoji: '🐒',
+    bg: 'linear-gradient(135deg, #3d1a00 0%, #5c2d0e 50%, #8b4513 100%)',
+    accent: '#ffd700',
+  },
 ];
 
 export default function Home() {
@@ -47,10 +55,9 @@ export default function Home() {
           </button>
         ))}
 
-        {/* 占位卡片，提示更多内容即将上线 */}
         <div className="anim-card anim-card--coming">
           <div className="card-preview">
-            <span className="card-emoji">🌊</span>
+            <span className="card-emoji">🐉</span>
           </div>
           <div className="card-info">
             <h2 className="card-title">更多故事…</h2>
