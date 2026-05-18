@@ -1,24 +1,32 @@
 /* ── 整体布局 ── */
 .home {
   min-height: 100vh;
+  min-height: 100dvh;
   background: #07050f;
   color: #fff;
   font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 24px 60px;
+  padding: 0 16px 60px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 /* ── 头部 ── */
 .home-header {
   text-align: center;
-  padding: 60px 0 48px;
+  padding: 40px 0 32px;
+  width: 100%;
 }
 
 .home-logo {
-  font-size: 56px;
-  margin-bottom: 12px;
+  font-size: 48px;
+  margin-bottom: 10px;
   display: block;
   animation: logoBob 3s ease-in-out infinite;
 }
@@ -49,10 +57,32 @@
 /* ── 卡片网格 ── */
 .home-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 16px;
   width: 100%;
   max-width: 900px;
+}
+
+@media (min-width: 640px) {
+  .home-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .home {
+    padding: 0 24px 60px;
+  }
+  .home-header {
+    padding: 60px 0 48px;
+  }
+  .home-logo {
+    font-size: 56px;
+  }
+  .card-preview {
+    height: 160px;
+  }
+  .card-emoji {
+    font-size: 72px;
+  }
 }
 
 /* ── 动画卡片 ── */
@@ -87,7 +117,7 @@
 /* ── 卡片预览区 ── */
 .card-preview {
   position: relative;
-  height: 160px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,7 +125,7 @@
 }
 
 .card-emoji {
-  font-size: 72px;
+  font-size: 56px;
   line-height: 1;
   z-index: 1;
   filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
@@ -133,31 +163,31 @@
 
 /* ── 卡片文字区 ── */
 .card-info {
-  padding: 20px 22px 22px;
+  padding: 14px 16px 16px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   flex: 1;
   background: rgba(0, 0, 0, 0.25);
 }
 
 .card-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   margin: 0;
   letter-spacing: 1px;
 }
 
 .card-desc {
-  font-size: 13px;
+  font-size: 12px;
   color: rgba(200, 200, 255, 0.7);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .card-cta {
-  margin-top: 8px;
-  font-size: 13px;
+  margin-top: 6px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--card-accent, #a78bfa);
   letter-spacing: 0.5px;
