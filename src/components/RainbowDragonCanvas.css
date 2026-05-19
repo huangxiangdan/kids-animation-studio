@@ -1,0 +1,499 @@
+/* ===== Rainbow Dragon Canvas ===== */
+
+.rd-stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #1a0533 0%, #2d1b69 40%, #4c1d95 70%, #7c3aed 100%);
+  transition: filter 1.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rd-stage--gray {
+  background: linear-gradient(180deg, #4a4a4a 0%, #6b6b6b 40%, #888 70%, #999 100%);
+  filter: saturate(0.2);
+}
+
+.rd-stage--colorful {
+  background: linear-gradient(180deg, #1a0533 0%, #2d1b69 30%, #6d28d9 60%, #a78bfa 80%, #c4b5fd 100%);
+  filter: saturate(1.3);
+}
+
+/* ===== Stars ===== */
+
+.rd-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.rd-star {
+  position: absolute;
+  color: #ffd700;
+  animation: rd-twinkle 2s ease-in-out infinite;
+}
+
+.rd-star--dim {
+  color: #888;
+  animation: rd-twinkle-dim 3s ease-in-out infinite;
+}
+
+@keyframes rd-twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes rd-twinkle-dim {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.1); }
+}
+
+/* ===== Clouds ===== */
+
+.rd-clouds {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.rd-cloud {
+  position: absolute;
+  font-size: 60px;
+  opacity: 0.7;
+  animation: rd-cloud-float 8s ease-in-out infinite;
+  transition: filter 1s ease;
+}
+
+.rd-cloud--gray {
+  filter: grayscale(1) brightness(0.6);
+}
+
+.rd-cloud--1 {
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.rd-cloud--2 {
+  top: 25%;
+  right: 15%;
+  animation-delay: 2s;
+  font-size: 45px;
+}
+
+.rd-cloud--3 {
+  top: 10%;
+  left: 55%;
+  animation-delay: 4s;
+  font-size: 35px;
+}
+
+@keyframes rd-cloud-float {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(15px) translateY(-8px); }
+  50% { transform: translateX(5px) translateY(-15px); }
+  75% { transform: translateX(-10px) translateY(-5px); }
+}
+
+/* ===== Sad Cloud ===== */
+
+.rd-sad-cloud {
+  position: absolute;
+  top: 30%;
+  right: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: rd-sad-cloud-bob 3s ease-in-out infinite;
+}
+
+.rd-sad-cloud-emoji {
+  font-size: 70px;
+  filter: grayscale(0.5) brightness(0.8);
+}
+
+.rd-tears {
+  display: flex;
+  gap: 8px;
+  margin-top: -5px;
+}
+
+.rd-tear {
+  animation: rd-tear-fall 1.5s ease-in infinite;
+  font-size: 20px;
+}
+
+@keyframes rd-sad-cloud-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes rd-tear-fall {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(40px); }
+}
+
+/* ===== Rainbow ===== */
+
+.rd-rainbow {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  pointer-events: none;
+}
+
+.rd-rainbow-svg {
+  width: 100%;
+  height: auto;
+}
+
+.rd-rainbow-arc {
+  animation: rd-rainbow-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes rd-rainbow-glow {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* ===== Dragon ===== */
+
+.rd-dragon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1.5s ease;
+}
+
+.rd-dragon-emoji {
+  font-size: 80px;
+  display: block;
+}
+
+/* Scene-specific dragon positions & animations */
+.rd-dragon--wake {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rd-dragon-sleep 3s ease-in-out infinite;
+}
+
+.rd-dragon--fly {
+  top: 40%;
+  left: 30%;
+  animation: rd-dragon-fly 4s ease-in-out infinite;
+}
+
+.rd-dragon--paint {
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: rd-dragon-paint 2s ease-in-out infinite;
+}
+
+.rd-dragon--celebrate {
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: rd-dragon-celebrate 1s ease-in-out infinite;
+}
+
+@keyframes rd-dragon-sleep {
+  0%, 100% { transform: translate(-50%, -50%) rotate(-5deg); }
+  50% { transform: translate(-50%, -50%) rotate(5deg); }
+}
+
+@keyframes rd-dragon-fly {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(30px, -20px) rotate(-5deg); }
+  50% { transform: translate(60px, 0) rotate(0deg); }
+  75% { transform: translate(30px, 20px) rotate(5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes rd-dragon-paint {
+  0%, 100% { transform: translateX(-50%) rotate(-10deg); }
+  50% { transform: translateX(-50%) rotate(10deg); }
+}
+
+@keyframes rd-dragon-celebrate {
+  0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+  50% { transform: translateX(-50%) translateY(-15px) scale(1.1); }
+}
+
+/* Tail sparkle */
+.rd-tail-sparkle {
+  position: absolute;
+  bottom: -10px;
+  right: -20px;
+  font-size: 30px;
+  animation: rd-sparkle 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes rd-sparkle {
+  0% { opacity: 0.5; transform: scale(0.8) rotate(0deg); }
+  100% { opacity: 1; transform: scale(1.3) rotate(20deg); }
+}
+
+/* ===== Animal Friends ===== */
+
+.rd-friends {
+  position: absolute;
+  bottom: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.rd-friend {
+  position: absolute;
+  font-size: 40px;
+  animation: rd-friend-appear 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@keyframes rd-friend-appear {
+  0% { opacity: 0; transform: translateY(30px) scale(0.5); }
+  60% { transform: translateY(-10px) scale(1.2); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ===== Confetti ===== */
+
+.rd-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.rd-confetti-piece {
+  position: absolute;
+  top: -10px;
+  width: 8px;
+  height: 12px;
+  border-radius: 2px;
+  animation: rd-confetti-fall 3s linear infinite;
+}
+
+@keyframes rd-confetti-fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0.3; }
+}
+
+/* ===== Narration ===== */
+
+.rd-narration {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  z-index: 10;
+  width: 90%;
+  max-width: 400px;
+}
+
+.rd-scene-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  animation: rd-fade-in 0.8s ease-out;
+}
+
+.rd-scene-text {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.9;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  animation: rd-fade-in 1s ease-out 0.3s both;
+}
+
+@keyframes rd-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Progress Dots ===== */
+
+.rd-progress {
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.rd-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.rd-dot--active {
+  background: #ffd700;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px #ffd700;
+}
+
+.rd-dot--done {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== Start Screen ===== */
+
+.rd-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+  z-index: 20;
+  animation: rd-fade-in 1s ease-out;
+}
+
+.rd-start-emoji {
+  font-size: 100px;
+  animation: rd-start-bounce 2s ease-in-out infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes rd-start-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
+}
+
+.rd-start-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 12px rgba(124, 58, 237, 0.6);
+}
+
+.rd-start-desc {
+  font-size: 16px;
+  opacity: 0.8;
+  margin-bottom: 28px;
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+.rd-start-btn {
+  padding: 14px 36px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+  transition: all 0.3s ease;
+  animation: rd-btn-pulse 2s ease-in-out infinite;
+}
+
+.rd-start-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 30px rgba(124, 58, 237, 0.6);
+}
+
+@keyframes rd-btn-pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4); }
+  50% { box-shadow: 0 4px 30px rgba(124, 58, 237, 0.7); }
+}
+
+/* ===== Credits ===== */
+
+.rd-credits {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+  z-index: 20;
+  animation: rd-fade-in 1.5s ease-out;
+}
+
+.rd-credits-emoji {
+  font-size: 80px;
+  animation: rd-credits-glow 2s ease-in-out infinite alternate;
+  margin-bottom: 16px;
+}
+
+@keyframes rd-credits-glow {
+  0% { filter: brightness(1); transform: scale(1); }
+  100% { filter: brightness(1.2); transform: scale(1.1); }
+}
+
+.rd-credits-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 12px rgba(124, 58, 237, 0.5);
+}
+
+.rd-credits-sub {
+  font-size: 16px;
+  opacity: 0.7;
+  margin-bottom: 28px;
+}
+
+/* ===== Mobile ===== */
+
+@media (max-width: 480px) {
+  .rd-dragon-emoji {
+    font-size: 60px;
+  }
+
+  .rd-start-title {
+    font-size: 26px;
+  }
+
+  .rd-start-emoji {
+    font-size: 80px;
+  }
+
+  .rd-scene-title {
+    font-size: 18px;
+  }
+
+  .rd-scene-text {
+    font-size: 13px;
+  }
+
+  .rd-sad-cloud-emoji {
+    font-size: 50px;
+  }
+
+  .rd-friend {
+    font-size: 30px;
+  }
+
+  .rd-credits-title {
+    font-size: 20px;
+  }
+}
+
+@media (max-height: 600px) {
+  .rd-narration {
+    bottom: 12%;
+  }
+
+  .rd-progress {
+    bottom: 5%;
+  }
+}

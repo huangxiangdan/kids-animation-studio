@@ -18,6 +18,14 @@ const ANIMATIONS = [
     bg: 'linear-gradient(135deg, #3d1a00 0%, #5c2d0e 50%, #8b4513 100%)',
     accent: '#ffd700',
   },
+  {
+    id: 'rainbow-dragon',
+    title: '小龙的彩虹桥',
+    desc: '天空失去颜色，小龙用尾巴画出一道彩虹！',
+    emoji: '🐉',
+    bg: 'linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #7c3aed 100%)',
+    accent: '#a78bfa',
+  },
 ];
 
 export default function Home() {
@@ -57,7 +65,7 @@ export default function Home() {
 
         <div className="anim-card anim-card--coming">
           <div className="card-preview">
-            <span className="card-emoji">🐉</span>
+            <span className="card-emoji">🦖</span>
           </div>
           <div className="card-info">
             <h2 className="card-title">更多故事…</h2>
