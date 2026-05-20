@@ -4,6 +4,8 @@ import RocketBunnyCanvas from './components/RocketBunnyCanvas';
 import WhiteBoneDemonCanvas from './components/WhiteBoneDemonCanvas';
 import RainbowDragonCanvas from './components/RainbowDragonCanvas';
 
+import DinoGardenCanvas from './components/DinoGardenCanvas';
+
 export default function App() {
   return (
     <Routes>
@@ -11,6 +13,7 @@ export default function App() {
       <Route path="/rocket-bunny" element={<RocketBunnyCanvas />} />
       <Route path="/white-bone-demon" element={<WhiteBoneDemonCanvas />} />
       <Route path="/rainbow-dragon" element={<RainbowDragonCanvas />} />
+      <Route path="/dino-garden" element={<DinoGardenCanvas />} />
     </Routes>
   );
 }

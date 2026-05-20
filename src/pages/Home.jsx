@@ -26,6 +26,14 @@ const ANIMATIONS = [
     bg: 'linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #7c3aed 100%)',
     accent: '#a78bfa',
   },
+  {
+    id: 'dino-garden',
+    title: '小恐龙的花园派对',
+    desc: '小恐龙准备了一场花园派对，朋友们都来啦！',
+    emoji: '🦖',
+    bg: 'linear-gradient(135deg, #2d5016 0%, #4a8c28 50%, #87ceeb 100%)',
+    accent: '#7ec850',
+  },
 ];
 
 export default function Home() {
@@ -65,7 +73,7 @@ export default function Home() {
 
         <div className="anim-card anim-card--coming">
           <div className="card-preview">
-            <span className="card-emoji">🦖</span>
+            <span className="card-emoji">🧚</span>
           </div>
           <div className="card-info">
             <h2 className="card-title">更多故事…</h2>
