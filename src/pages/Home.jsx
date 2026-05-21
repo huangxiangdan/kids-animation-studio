@@ -34,6 +34,14 @@ const ANIMATIONS = [
     bg: 'linear-gradient(135deg, #2d5016 0%, #4a8c28 50%, #87ceeb 100%)',
     accent: '#7ec850',
   },
+  {
+    id: 'candy-cat',
+    title: '小猫的糖果世界冒险',
+    desc: '小猫掉进糖果世界，巧克力河漂流、棉花糖山滑梯！',
+    emoji: '🐱',
+    bg: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #c44dff 100%)',
+    accent: '#ff6b9d',
+  },
 ];
 
 export default function Home() {

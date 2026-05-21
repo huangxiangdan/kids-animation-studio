@@ -1,0 +1,769 @@
+/* ===== Candy Cat Canvas - Base ===== */
+.candy-canvas {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* ===== Intro ===== */
+.candy-canvas--intro {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 30%, #fdfcfb 60%, #a1c4fd 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.candy-intro {
+  text-align: center;
+  z-index: 2;
+}
+
+.candy-intro-emoji {
+  font-size: 5rem;
+  animation: candyBounce 1.5s ease-in-out infinite;
+}
+
+.candy-intro-title {
+  font-size: 2rem;
+  color: #d63384;
+  margin: 0.5rem 0;
+  text-shadow: 2px 2px 0 #fff;
+}
+
+.candy-intro-sub {
+  font-size: 1.1rem;
+  color: #c084fc;
+  margin-bottom: 1.5rem;
+}
+
+.candy-intro-decor {
+  margin-bottom: 1.5rem;
+}
+
+.candy-float {
+  display: inline-block;
+  font-size: 2rem;
+  margin: 0 0.3rem;
+  animation: floatUp 2s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+.candy-btn {
+  background: linear-gradient(135deg, #ff6b9d, #c44dff);
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(196, 77, 255, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.candy-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(196, 77, 255, 0.6);
+}
+
+/* ===== Scene 1: Fall ===== */
+.candy-canvas--fall {
+  background: linear-gradient(180deg, #87ceeb 0%, #ff9a9e 40%, #fecfef 70%, #f9e0ff 100%);
+}
+
+.scene-fall {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.fall-sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+}
+
+.fall-rainbow-hole {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+}
+
+.rainbow-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 8px solid;
+  animation: rainbowPulse 2s ease-in-out infinite;
+}
+
+.ring-1 {
+  inset: 0;
+  border-color: #ff6b6b;
+  animation-delay: 0s;
+}
+
+.ring-2 {
+  inset: 12px;
+  border-color: #ffa500;
+  animation-delay: 0.2s;
+}
+
+.ring-3 {
+  inset: 24px;
+  border-color: #ffd700;
+  animation-delay: 0.4s;
+}
+
+.ring-4 {
+  inset: 36px;
+  border-color: #87ceeb;
+  animation-delay: 0.6s;
+}
+
+.fall-butterfly {
+  position: absolute;
+  top: 15%;
+  left: 60%;
+  font-size: 2.5rem;
+  animation: butterflyFly 4s ease-in-out infinite;
+}
+
+.fall-cat {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4rem;
+  animation: catFall 3s ease-in forwards;
+}
+
+.fall-candy-land {
+  position: absolute;
+  bottom: 15%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.candy-tree {
+  display: inline-block;
+  font-size: 2.5rem;
+  margin: 0 0.8rem;
+  animation: candyGrow 1s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.2s);
+  opacity: 0;
+  transform: scale(0);
+}
+
+.fall-chocolate-river {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 12%;
+  background: linear-gradient(180deg, #8B4513, #5C2D0E);
+  animation: riverFlow 3s ease-in-out infinite;
+}
+
+/* ===== Scene 2: River ===== */
+.candy-canvas--river {
+  background: linear-gradient(180deg, #fce4ec 0%, #f8bbd0 30%, #8B4513 50%, #5C2D0E 100%);
+}
+
+.scene-river {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.river-sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+}
+
+.cookie-castle {
+  position: absolute;
+  top: 5%;
+  right: 15%;
+  font-size: 4rem;
+  animation: castleAppear 1s ease-out forwards;
+}
+
+.marshmallow-cloud {
+  position: absolute;
+  font-size: 3rem;
+  animation: cloudDrift 6s ease-in-out infinite;
+}
+
+.mc-1 { top: 5%; left: 10%; animation-delay: 0s; }
+.mc-2 { top: 12%; left: 40%; animation-delay: 1s; }
+.mc-3 { top: 3%; left: 70%; animation-delay: 2s; }
+
+.river-body {
+  position: absolute;
+  top: 45%;
+  left: 0;
+  width: 100%;
+  height: 30%;
+}
+
+.river-boat {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  animation: boatSail 5s ease-in-out infinite;
+  font-size: 1.5rem;
+}
+
+.boat-candy {
+  display: inline-block;
+  font-size: 3rem;
+}
+
+.boat-cat {
+  position: relative;
+  top: -1.8rem;
+  left: 0.3rem;
+  font-size: 2.5rem;
+  animation: catWave 1.5s ease-in-out infinite;
+}
+
+.river-fish {
+  position: absolute;
+  font-size: 1.8rem;
+  animation: fishJump 3s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.8s);
+}
+
+.river-fish:nth-child(2) { top: 20%; left: 40%; }
+.river-fish:nth-child(3) { top: 40%; left: 60%; }
+.river-fish:nth-child(4) { top: 10%; left: 75%; }
+.river-fish:nth-child(5) { top: 50%; left: 30%; }
+
+.river-banks {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bank-left, .bank-right {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.5rem;
+}
+
+/* ===== Scene 3: Mountain ===== */
+.candy-canvas--mountain {
+  background: linear-gradient(180deg, #e8f5e9 0%, #c8e6c9 30%, #f8bbd0 60%, #fce4ec 100%);
+}
+
+.scene-mountain {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.mountain-sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+}
+
+.ice-cream-top {
+  font-size: 5rem;
+  animation: iceCreamWobble 2s ease-in-out infinite;
+}
+
+.mountain-body {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 55%;
+}
+
+.marshmallow-mtn {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #f8bbd0, #fce4ec, #fff);
+  border-radius: 50% 50% 0 0;
+  box-shadow: inset 0 -20px 40px rgba(255, 182, 193, 0.5);
+}
+
+.mountain-cat {
+  position: absolute;
+  font-size: 3rem;
+  left: 50%;
+}
+
+.mountain-cat.climbing {
+  animation: catClimb 4s ease-in-out forwards;
+}
+
+.slide-trail {
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  width: 40%;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b9d, #c44dff, #4dc9f6, #ff6b9d);
+  animation: trailAppear 2s ease-out 4s forwards;
+  opacity: 0;
+}
+
+.mountain-ground {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.ground-flower {
+  display: inline-block;
+  font-size: 1.8rem;
+  margin: 0 0.5rem;
+  animation: flowerSway 2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.3s);
+}
+
+/* ===== Scene 4: Party ===== */
+.candy-canvas--party {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #a1c4fd 50%, #c44dff 75%, #ff6b9d 100%);
+  background-size: 300% 300%;
+  animation: partyGradient 4s ease infinite;
+}
+
+.scene-party {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.party-sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+}
+
+.party-confetti {
+  position: absolute;
+  top: -10%;
+  left: var(--x);
+  font-size: 1.5rem;
+  animation: confettiFall 3s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.4s);
+}
+
+.party-center {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.party-cat {
+  font-size: 5rem;
+  animation: catDance 1s ease-in-out infinite;
+}
+
+.party-friends {
+  margin-top: 1rem;
+}
+
+.party-friend {
+  display: inline-block;
+  font-size: 2.5rem;
+  margin: 0 0.5rem;
+  animation: friendArrive 0.5s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.3s);
+  opacity: 0;
+  transform: scale(0);
+}
+
+.party-fireworks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  pointer-events: none;
+}
+
+.party-firework {
+  position: absolute;
+  top: 10%;
+  left: var(--x);
+}
+
+.fw-burst {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffd700;
+  animation: fwBurst 1.5s ease-out infinite;
+  animation-delay: calc(var(--i) * 0.5s);
+  box-shadow:
+    0 0 10px #ff6b6b,
+    0 0 20px #ffd700,
+    0 0 30px #c44dff;
+}
+
+.party-ground {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.party-candy {
+  display: inline-block;
+  font-size: 2rem;
+  margin: 0 0.6rem;
+  animation: candyBounce 1.5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.2s);
+}
+
+/* ===== Credits ===== */
+.candy-canvas--credits {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 40%, #fdfcfb 70%, #c44dff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.candy-credits {
+  text-align: center;
+  z-index: 2;
+}
+
+.candy-credits-fireworks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.firework {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  font-size: 1.5rem;
+  animation: fireworkSparkle 2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.3s);
+}
+
+.candy-credits-emoji {
+  font-size: 4rem;
+  animation: candyBounce 1.5s ease-in-out infinite;
+}
+
+.candy-credits-title {
+  font-size: 1.8rem;
+  color: #d63384;
+  text-shadow: 2px 2px 0 #fff;
+  margin: 0.5rem 0;
+}
+
+.candy-credits-sub {
+  font-size: 1.1rem;
+  color: #c084fc;
+  margin-bottom: 1rem;
+}
+
+.candy-credits-friends {
+  margin-bottom: 1.5rem;
+}
+
+.friend-bounce {
+  display: inline-block;
+  font-size: 2.5rem;
+  margin: 0 0.4rem;
+  animation: candyBounce 1.2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.2s);
+}
+
+/* ===== Scene Overlay ===== */
+.scene-overlay {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.scene-title {
+  font-size: 1.5rem;
+  color: #d63384;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.scene-text {
+  font-size: 1rem;
+  color: #7c3aed;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+  margin-top: 0.3rem;
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+/* ===== Progress Dots ===== */
+.scene-progress {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transition: all 0.3s;
+}
+
+.progress-dot.active {
+  background: #d63384;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px #d63384;
+}
+
+.progress-dot.done {
+  background: #c084fc;
+}
+
+/* ===== Keyframes ===== */
+@keyframes candyBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes rainbowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes butterflyFly {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(30px, -20px) rotate(10deg); }
+  50% { transform: translate(-10px, -30px) rotate(-5deg); }
+  75% { transform: translate(20px, -10px) rotate(8deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes catFall {
+  0% { top: 5%; opacity: 0; }
+  20% { opacity: 1; }
+  60% { top: 35%; }
+  80% { top: 30%; }
+  100% { top: 32%; }
+}
+
+@keyframes candyGrow {
+  0% { opacity: 0; transform: scale(0) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes riverFlow {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-5px); }
+}
+
+@keyframes castleAppear {
+  0% { opacity: 0; transform: scale(0.5) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes cloudDrift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(20px); }
+}
+
+@keyframes boatSail {
+  0% { left: 5%; transform: rotate(-3deg); }
+  50% { left: 60%; transform: rotate(3deg); }
+  100% { left: 5%; transform: rotate(-3deg); }
+}
+
+@keyframes catWave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  75% { transform: rotate(-15deg); }
+}
+
+@keyframes fishJump {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+  50% { transform: translateY(-30px) scale(1.2); opacity: 1; }
+}
+
+@keyframes iceCreamWobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+
+@keyframes catClimb {
+  0% { bottom: 0%; transform: translateX(-50%); }
+  40% { bottom: 70%; transform: translateX(-50%) rotate(-10deg); }
+  60% { bottom: 70%; transform: translateX(-50%) rotate(10deg); }
+  100% { bottom: 0%; transform: translateX(-50%) rotate(0deg); }
+}
+
+@keyframes trailAppear {
+  0% { opacity: 0; width: 0; }
+  100% { opacity: 1; width: 40%; }
+}
+
+@keyframes flowerSway {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+
+@keyframes partyGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(100px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes catDance {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(-8deg); }
+  75% { transform: translateY(-8px) rotate(8deg); }
+}
+
+@keyframes friendArrive {
+  0% { opacity: 0; transform: scale(0) translateY(30px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes fwBurst {
+  0% { transform: scale(0); opacity: 0; }
+  30% { transform: scale(3); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes fireworkSparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 600px) {
+  .candy-intro-title {
+    font-size: 1.5rem;
+  }
+
+  .candy-intro-emoji {
+    font-size: 3.5rem;
+  }
+
+  .candy-btn {
+    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+  }
+
+  .fall-cat {
+    font-size: 3rem;
+  }
+
+  .candy-tree {
+    font-size: 1.8rem;
+    margin: 0 0.4rem;
+  }
+
+  .cookie-castle {
+    font-size: 3rem;
+  }
+
+  .boat-candy {
+    font-size: 2.2rem;
+  }
+
+  .boat-cat {
+    font-size: 1.8rem;
+    top: -1.2rem;
+  }
+
+  .ice-cream-top {
+    font-size: 3.5rem;
+  }
+
+  .mountain-cat {
+    font-size: 2.2rem;
+  }
+
+  .party-cat {
+    font-size: 3.5rem;
+  }
+
+  .party-friend {
+    font-size: 1.8rem;
+    margin: 0 0.3rem;
+  }
+
+  .scene-title {
+    font-size: 1.2rem;
+  }
+
+  .scene-text {
+    font-size: 0.85rem;
+  }
+
+  .candy-credits-title {
+    font-size: 1.4rem;
+  }
+
+  .candy-credits-emoji {
+    font-size: 3rem;
+  }
+}
