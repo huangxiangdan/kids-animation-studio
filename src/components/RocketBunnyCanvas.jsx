@@ -1,8 +1,16 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const W = 520, H = 700;
 const GROUND_Y = H - 80;
+
+// Responsive scale helper
+function getCanvasScale() {
+  const maxW = Math.min(window.innerWidth - 20, 520);
+  const maxH = window.innerHeight - 80;
+  const scale = Math.min(maxW / W, maxH / H, 1);
+  return scale;
+}
 
 function createState() {
   return {
@@ -494,13 +502,27 @@ export default function RocketBunnyCanvas() {
     letterSpacing: 2,
   };
 
+  const [canvasScale, setCanvasScale] = useState(getCanvasScale());
+
+  useEffect(() => {
+    const onResize = () => setCanvasScale(getCanvasScale());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   return (
-    <div style={{ background: '#000', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', gap: 16 }}>
+    <div style={{ background: '#000', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100dvh', minWidth: '100vw', gap: 12, padding: '8px 0' }}>
       <canvas
         ref={canvasRef}
         width={W}
         height={H}
-        style={{ borderRadius: 12, boxShadow: '0 0 60px rgba(120,80,255,0.4)', display: 'block' }}
+        style={{
+          borderRadius: 12,
+          boxShadow: '0 0 60px rgba(120,80,255,0.4)',
+          display: 'block',
+          width: W * canvasScale,
+          height: H * canvasScale,
+        }}
       />
       <div style={{ display: 'flex', gap: 12 }}>
         <button onClick={() => navigate('/')} style={btnStyle}>← 返回首页</button>

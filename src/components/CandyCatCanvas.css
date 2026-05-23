@@ -2,9 +2,13 @@
 .candy-canvas {
   position: relative;
   width: 100vw;
+  width: 100dvw;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  /* safe area for notch/home indicator */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 /* ===== Intro ===== */

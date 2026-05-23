@@ -1038,8 +1038,9 @@ export default function WhiteBoneDemonCanvas() {
         style={{
           width: '100%',
           maxWidth: '800px',
-          height: '100vh',
-          maxHeight: '600px',
+          height: '100%',
+          aspectRatio: '800 / 600',
+          maxHeight: 'calc(100dvh - 16px)',
           overflow: 'hidden',
           borderRadius: '12px',
           boxShadow: '0 0 60px rgba(139, 69, 19, 0.3)',
