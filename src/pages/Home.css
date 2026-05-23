@@ -8,10 +8,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 20px 60px;
+  padding: 0 20px 80px;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
+  width: 100%;
 }
 
 *, *::before, *::after {
@@ -21,8 +22,9 @@
 /* ── 头部 ── */
 .home-header {
   text-align: center;
-  padding: 48px 0 40px;
+  padding: 40px 0 32px;
   width: 100%;
+  max-width: 900px;
 }
 
 .home-logo {
@@ -66,11 +68,11 @@
 
 @media (min-width: 640px) {
   .home-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
   .home {
-    padding: 0 24px 60px;
+    padding: 0 24px 80px;
   }
   .home-header {
     padding: 60px 0 48px;
@@ -83,6 +85,12 @@
   }
   .card-emoji {
     font-size: 72px;
+  }
+}
+
+@media (min-width: 960px) {
+  .home-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -106,7 +114,7 @@
     font-size: 11px;
   }
   .home-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
   .card-preview {
@@ -144,12 +152,17 @@
   flex-direction: column;
   padding: 0;
   color: #fff;
+  width: 100%;
 }
 
 .anim-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--card-accent, rgba(255,255,255,0.2));
   border-color: var(--card-accent, rgba(255, 255, 255, 0.2));
+}
+
+.anim-card:active {
+  transform: translateY(-2px);
 }
 
 /* 占位卡片 */
@@ -247,4 +260,32 @@
   font-size: 12px;
   color: rgba(200, 200, 255, 0.5);
   letter-spacing: 1px;
+}
+
+/* ── 小屏手机优化（iPhone SE 等） ── */
+@media (max-width: 374px) {
+  .home {
+    padding: 0 12px 60px;
+  }
+  .home-header {
+    padding: 28px 0 20px;
+  }
+  .home-logo {
+    font-size: 36px;
+  }
+  .card-preview {
+    height: 110px;
+  }
+  .card-emoji {
+    font-size: 50px;
+  }
+  .card-info {
+    padding: 12px 14px 14px;
+  }
+  .card-title {
+    font-size: 15px;
+  }
+  .card-desc {
+    font-size: 12px;
+  }
 }
