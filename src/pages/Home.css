@@ -11,6 +11,7 @@
   padding: 0 20px 60px;
   box-sizing: border-box;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 *, *::before, *::after {
@@ -87,27 +88,46 @@
 
 /* ── 横屏手机优化 ── */
 @media (max-height: 500px) and (orientation: landscape) {
+  .home {
+    padding: 0 16px 40px;
+  }
   .home-header {
-    padding: 16px 0 12px;
+    padding: 12px 0 8px;
   }
   .home-logo {
-    font-size: 28px;
+    font-size: 24px;
+    margin-bottom: 4px;
   }
   .home-title {
-    font-size: 22px;
+    font-size: 20px;
+    margin-bottom: 4px;
   }
   .home-sub {
-    font-size: 12px;
+    font-size: 11px;
   }
   .home-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
   }
   .card-preview {
-    height: 80px;
+    height: 70px;
   }
   .card-emoji {
-    font-size: 40px;
+    font-size: 36px;
+  }
+  .card-info {
+    padding: 8px 12px 10px;
+    gap: 2px;
+  }
+  .card-title {
+    font-size: 14px;
+  }
+  .card-desc {
+    font-size: 11px;
+  }
+  .card-cta {
+    font-size: 11px;
+    margin-top: 4px;
   }
 }
 
